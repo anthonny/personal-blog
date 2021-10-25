@@ -1,65 +1,10 @@
 {
-  "meta": {
-    "username": "anthonny",
-    "repositoryName": "personal-blog",
-    "branch": "gh-pages",
-    "cname": "anthonnyquerouil.me",
-    "delay": "300"
+  "sourceRepository": {
+    "url": "https://github.com/anthonny/personal-blog.git",
+    "branch": "gh-pages"
   },
-  "site": {
-    "title": "Anthonny Quérouil",
-    "description": "Passionate developer :)",
-    "logo": "https://avatars.githubusercontent.com/u/2006548?v=2",
-    "cover": "https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg",
-    "postsPerPage": "10",
-    "fathomAnalytics": "RMDAJFGG",
-    "disqus": "anthonnyquerouil",
-    "delay": "300",
-    "blogPath": "",
-    "googleAnalytics": ""
-  },
-  "socialnetwork": {
-    "email": "anthonny.querouil@gmail.com",
-    "twitter": "https://twitter.com/anthonny_q",
-    "googleplus": "https://plus.google.com/u/0/+AnthonnyQuerouil",
-    "linkedin": "http://fr.linkedin.com/in/anthonnyquerouil/",
-    "github": "https://github.com/anthonny",
-    "facebook": "",
-    "instagram": "",
-    "pinterest": "",
-    "flickr": "",
-    "stackoverflow": "",
-    "paypalme": "https://www.paypal.me/anthonny",
-    "opencollective": ""
-  },
-  "theme": {
-    "name": "indigo-theme"
-  },
-  "urls": {
-    "site": "http://anthonnyquerouil.me",
-    "hubpress": "http://localhost:3003",
-    "theme": "//anthonnyquerouil.me/themes/indigo-theme",
-    "images": "http://anthonnyquerouil.me/images"
-  },
-  "initialisationConfigComponent": {
-    "name": "initialise-configuration",
-    "computed": {},
-    "methods": {},
-    "staticRenderFns": [
-      null,
-      null,
-      null
-    ],
-    "__file": "hubpress-plugins/hubpress-github/components/InitConfig.vue",
-    "beforeCreate": [
-      null,
-      null
-    ],
-    "beforeDestroy": [
-      null
-    ],
-    "_Ctor": {},
-    "_compiled": true
-  },
-  "navigation": []
+  "publicationRepository": {
+    "url": "https://github.com/anthonny/personal-blog.git",
+    "branch": "gh-pages"
+  }
 }
