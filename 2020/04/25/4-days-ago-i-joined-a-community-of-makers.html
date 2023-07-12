@@ -218,7 +218,7 @@ Honestly, I really like all the stuff on <a href="https://getmakerlog.com">Maker
             <section>© 2020. All Rights Reserved.</section>
             <section>
                 Proudly published with
-                <a href="#" class="hover:text-indigo:600 underline">HubPress</a>
+                <a href="https://hubpress.dev" class="hover:text-indigo:600 underline">HubPress</a>
             </section>
         </footer>
 
@@ -226,13 +226,7 @@ Honestly, I really like all the stuff on <a href="https://getmakerlog.com">Maker
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js?v="></script> 
       <script type="text/javascript">
-        jQuery( document ).ready(function() {
-          // change date with ago
-          jQuery('ago.ago').each(function(){
-            var element = jQuery(this).parent();
-            element.html( moment(element.text()).fromNow());
-          });
-        });
+        document.querySelectorAll("time[itemprop=datePublished]").forEach(function(el) { el.innerText = moment(el.attributes["datetime"].value).fromNow();})
 
         // hljs.initHighlightingOnLoad();
       </script>

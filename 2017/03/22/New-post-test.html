@@ -149,13 +149,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
       <script type="text/javascript">
-        jQuery( document ).ready(function() {
-          // change date with ago
-          jQuery('ago.ago').each(function(){
-            var element = jQuery(this).parent();
-            element.html( moment(element.text()).fromNow());
-          });
-        });
+        document.querySelectorAll("time[itemprop=datePublished]").forEach(function(el) { el.innerText = moment(el.attributes["datetime"].value).fromNow();})
 
         hljs.initHighlightingOnLoad();
       </script>
