@@ -28,7 +28,7 @@
                 >
                     <form
                         id="todo-form"
-                        hx-post="/api/todos"
+                        hx-post="/workerify-examples/htmx/api/todos"
                         hx-swap="none"
                         hx-on::after-request="this.reset();"
                     >
@@ -44,7 +44,7 @@
                     <div
                         class="flex flex-1 flex-col overflow-hidden"
                         id="todos"
-                        hx-get="/api/todos"
+                        hx-get="/workerify-examples/htmx/api/todos"
                         hx-trigger="workerify-ready, todos:refresh from:body"
                         hx-swap="outerHTML"
                     >

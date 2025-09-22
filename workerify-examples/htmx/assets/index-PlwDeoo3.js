@@ -9,13 +9,13 @@
   </svg>
 `,viewTodo=e=>t=>{const n=t.status==="checked"?checkedIcon:squareIcon,r=t.status==="checked"?"line-through text-gray-400":"";return`
     <div class="flex items-start border-b-2 border-gray-100 px-4 py-4 fill-current" id="todo-${t.id}">
-      <div class="text-gray-500 stroke-current cursor-pointer" hx-put="/api/todos/${t.id}/toggle-status?filter=${e}" hx-target="#todo-${t.id}" hx-swap="outerHTML">
+      <div class="text-gray-500 stroke-current cursor-pointer" hx-put="/workerify-examples/htmx/api/todos/${t.id}/toggle-status?filter=${e}" hx-target="#todo-${t.id}" hx-swap="outerHTML">
         ${n}
       </div>
       <div class="ml-4 ${r}">${t.value}</div>
     </div>
   `},viewFooterFilter=(e,t,n)=>`
-  <li class="cursor-pointer ${e?"text-white":""}" hx-get="/api/todos?filter=${t}" hx-target="#todos" hx-swap="outerHTML">${n}</li>
+  <li class="cursor-pointer ${e?"text-white":""}" hx-get="/workerify-examples/htmx/api/todos?filter=${t}" hx-target="#todos" hx-swap="outerHTML">${n}</li>
 `,viewFooter=(e,t)=>`
   <div class="flex justify-between items-center px-4 py-2 bg-gray-800 text-white">
     <div>${e} ${e===1?"item":"items"} left</div>
@@ -30,7 +30,7 @@
 `,viewTodos=(e,t)=>`<div
       class="flex flex-1 flex-col overflow-hidden"
       id="todos"
-      hx-get="/api/todos?filter=${t}"
+      hx-get="/workerify-examples/htmx/api/todos?filter=${t}"
       hx-trigger="sw-ready, todos:refresh from:body"
       hx-swap="outerHTML"
   >
@@ -43,4 +43,4 @@
         <!-- Footer will be rendered here -->
         ${viewFooter(e.length,t)}
     </div>
-  </div>`;async function todosRouter(e,t){const n=[{id:"1",value:"Play with Htmx",status:"checked"},{id:"2",value:"Ship Workerify",status:"checked"},{id:"3",value:"Rewrite Hubpress with Htmx and Workerify",status:"unchecked"}];e.get("/api/todos",r=>{const i=new URL(r.url).searchParams.get("filter")||"all";let a=n;return i==="unchecked"?a=n.filter(l=>l.status==="unchecked"):i==="checked"&&(a=n.filter(l=>l.status==="checked")),viewTodos(a,i)}),e.post("/api/todos",(r,o)=>{(!r.body||!r.body?.todo)&&(o.status=422);const s=r.body,i={id:`${Date.now()}`,value:s.todo,status:"unchecked"};return n.reverse().push(i),n.reverse(),o.headers={"HX-Trigger":"todos:refresh"},viewTodo("all")(i)}),e.put("/api/todos/:todoId/toggle-status",(r,o)=>{const s=r.params.todoId,l=new URL(r.url).searchParams.get("filter")||"all",c=n.find(d=>d.id===s);return c?(c.status=c.status==="checked"?"unchecked":"checked",o.headers={"HX-Trigger":"todos:refresh"},viewTodo(l)(c)):(o.status=404,{error:"Todo not found"})})}const start=async()=>{try{await registerWorkerifySW();const e=createWorkerify({scope:"/workerify-examples/htmx/"});await e.register(todosRouter),e.listen(),htmx.trigger("#todos","workerify-ready")}catch(e){console.log(e)}};start();
+  </div>`;async function todosRouter(e,t){const n=[{id:"1",value:"Play with Htmx",status:"checked"},{id:"2",value:"Ship Workerify",status:"checked"},{id:"3",value:"Rewrite Hubpress with Htmx and Workerify",status:"unchecked"}];e.get("/workerify-examples/htmx/api/todos",r=>{const i=new URL(r.url).searchParams.get("filter")||"all";let a=n;return i==="unchecked"?a=n.filter(l=>l.status==="unchecked"):i==="checked"&&(a=n.filter(l=>l.status==="checked")),viewTodos(a,i)}),e.post("/workerify-examples/htmx/api/todos",(r,o)=>{(!r.body||!r.body?.todo)&&(o.status=422);const s=r.body,i={id:`${Date.now()}`,value:s.todo,status:"unchecked"};return n.reverse().push(i),n.reverse(),o.headers={"HX-Trigger":"todos:refresh"},viewTodo("all")(i)}),e.put("/workerify-examples/htmx/api/todos/:todoId/toggle-status",(r,o)=>{const s=r.params.todoId,l=new URL(r.url).searchParams.get("filter")||"all",c=n.find(d=>d.id===s);return c?(c.status=c.status==="checked"?"unchecked":"checked",o.headers={"HX-Trigger":"todos:refresh"},viewTodo(l)(c)):(o.status=404,{error:"Todo not found"})})}const start=async()=>{try{await registerWorkerifySW();const e=createWorkerify({scope:"/workerify-examples/htmx/"});await e.register(todosRouter),e.listen(),htmx.trigger("#todos","workerify-ready")}catch(e){console.log(e)}};start();
