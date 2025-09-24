@@ -33,12 +33,12 @@
     "opencollective": ""
   },
   "theme": {
-    "name": "indigo-theme"
+    "name": "casper"
   },
   "urls": {
     "site": "http://anthonnyquerouil.me",
     "hubpress": "http://localhost:3000",
-    "theme": "//anthonnyquerouil.me/themes/indigo-theme",
+    "theme": "//anthonnyquerouil.me/themes/casper",
     "images": "http://anthonnyquerouil.me/images"
   },
   "initialisationConfigComponent": {
