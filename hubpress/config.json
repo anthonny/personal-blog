@@ -38,7 +38,7 @@
   "urls": {
     "site": "http://anthonnyquerouil.me",
     "hubpress": "http://localhost:3000",
-    "theme": "//anthonnyquerouil.me/themes/uno-zen",
+    "theme": "//anthonnyquerouil.me/themes/uno",
     "images": "http://anthonnyquerouil.me/images"
   },
   "initialisationConfigComponent": {
