@@ -27,7 +27,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137233668" />
+    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137426609" />
 
     <link rel="canonical" href="http://anthonnyquerouil.me/2025/09/16/how-workerifys-vite-plugin-and-core-library-work-together-a-deep-dive.html" />
     <meta name="referrer" content="origin" />
@@ -356,11 +356,23 @@ await app.listen();</code></pre>
 <h2 id="_build_time_optimizations">Build-Time Optimizations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Vite plugin improves both dev and production workflows:
-1. <strong>Pre-compiled templates</strong> for the Service Worker
-2. <strong>Virtual module generation</strong> for registration code
-3. <strong>Automatic base path handling</strong>
-4. <strong>Memory serving in dev</strong> for faster updates</p>
+<p>The Vite plugin improves both dev and production workflows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Pre-compiled templates</strong> for the Service Worker</p>
+</li>
+<li>
+<p><strong>Virtual module generation</strong> for registration code</p>
+</li>
+<li>
+<p><strong>Automatic base path handling</strong></p>
+</li>
+<li>
+<p><strong>Memory serving in dev</strong> for faster updates</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -368,12 +380,26 @@ await app.listen();</code></pre>
 <h2 id="_why_this_architecture">Why This Architecture?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Unlike traditional Service Worker setups, Workerify removes boilerplate and gives developers:
-- A <strong>familiar API</strong> (Fastify-like)
-- <strong>Zero network latency</strong> — requests handled in-browser
-- <strong>SPA-friendly design</strong>, perfect with <a href="https://htmx.org">HTMX</a>
-- <strong>Smooth dev experience</strong> — hot reload and route updates without reinstalling the SW
-- <strong>Full TypeScript support</strong></p>
+<p>Unlike traditional Service Worker setups, Workerify removes boilerplate and gives developers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <strong>familiar API</strong> (Fastify-like)</p>
+</li>
+<li>
+<p><strong>Zero network latency</strong> — requests handled in-browser</p>
+</li>
+<li>
+<p><strong>SPA-friendly design</strong>, perfect with <a href="https://htmx.org">HTMX</a></p>
+</li>
+<li>
+<p><strong>Smooth dev experience</strong> — hot reload and route updates without reinstalling the SW</p>
+</li>
+<li>
+<p><strong>Full TypeScript support</strong></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -523,7 +549,7 @@ htmx.trigger('#app', 'workerify-ready');</code></pre>
         // hljs.initHighlightingOnLoad();
       </script>
 
-    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137233668"></script>
+    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137426609"></script>
 
 
     <!-- Fathom - beautiful, simple website analytics -->

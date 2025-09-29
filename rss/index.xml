@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Anthonny Quérouil]]></title><description><![CDATA[Passionate developer :)]]></description><link>http://anthonnyquerouil.me</link><image><url>https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg</url><title>Anthonny Quérouil</title><link>http://anthonnyquerouil.me</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 29 Sep 2025 09:13:53 GMT</lastBuildDate><atom:link href="http://anthonnyquerouil.me/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How Workerify's Vite Plugin and Core Library Work Together: A Deep Dive]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Anthonny Quérouil]]></title><description><![CDATA[Passionate developer :)]]></description><link>http://anthonnyquerouil.me</link><image><url>https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg</url><title>Anthonny Quérouil</title><link>http://anthonnyquerouil.me</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 29 Sep 2025 09:17:06 GMT</lastBuildDate><atom:link href="http://anthonnyquerouil.me/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How Workerify's Vite Plugin and Core Library Work Together: A Deep Dive]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Building modern web applications with Service Workers can be complex. <a href="https://github.com/anthonny/workerify">Workerify</a>’s goal isn’t to simplify every aspect of Service Worker development, but rather to make it straightforward to create API-like endpoints directly in the browser. By providing a Fastify-like router that runs entirely inside a Service Worker, Workerify makes this specific use case both easy and powerful. In this post, we’ll explore <a href="https://github.com/anthonny/workerify">Workerify</a>’s architecture and how its Vite plugin and core library work hand in hand.</p>
@@ -172,11 +172,23 @@ await app.listen();</code></pre>
 <h2 id="_build_time_optimizations">Build-Time Optimizations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Vite plugin improves both dev and production workflows:
-1. <strong>Pre-compiled templates</strong> for the Service Worker
-2. <strong>Virtual module generation</strong> for registration code
-3. <strong>Automatic base path handling</strong>
-4. <strong>Memory serving in dev</strong> for faster updates</p>
+<p>The Vite plugin improves both dev and production workflows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Pre-compiled templates</strong> for the Service Worker</p>
+</li>
+<li>
+<p><strong>Virtual module generation</strong> for registration code</p>
+</li>
+<li>
+<p><strong>Automatic base path handling</strong></p>
+</li>
+<li>
+<p><strong>Memory serving in dev</strong> for faster updates</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -184,12 +196,26 @@ await app.listen();</code></pre>
 <h2 id="_why_this_architecture">Why This Architecture?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Unlike traditional Service Worker setups, Workerify removes boilerplate and gives developers:
-- A <strong>familiar API</strong> (Fastify-like)
-- <strong>Zero network latency</strong> — requests handled in-browser
-- <strong>SPA-friendly design</strong>, perfect with <a href="https://htmx.org">HTMX</a>
-- <strong>Smooth dev experience</strong> — hot reload and route updates without reinstalling the SW
-- <strong>Full TypeScript support</strong></p>
+<p>Unlike traditional Service Worker setups, Workerify removes boilerplate and gives developers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <strong>familiar API</strong> (Fastify-like)</p>
+</li>
+<li>
+<p><strong>Zero network latency</strong> — requests handled in-browser</p>
+</li>
+<li>
+<p><strong>SPA-friendly design</strong>, perfect with <a href="https://htmx.org">HTMX</a></p>
+</li>
+<li>
+<p><strong>Smooth dev experience</strong> — hot reload and route updates without reinstalling the SW</p>
+</li>
+<li>
+<p><strong>Full TypeScript support</strong></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
