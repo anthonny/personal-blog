@@ -69,6 +69,7 @@ await app.listen();
 ### 3. The Registration Dance
 
 When `app.listen()` runs:
+
 1. A unique **consumer ID** is created
 2. The instance **registers with the Service Worker** at `/__workerify/register`
 3. Routes are **broadcast** via BroadcastChannel
