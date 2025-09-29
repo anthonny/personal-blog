@@ -27,7 +27,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759130964996" />
+    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137233668" />
 
     <link rel="canonical" href="http://anthonnyquerouil.me/2025/09/16/how-workerifys-vite-plugin-and-core-library-work-together-a-deep-dive.html" />
     <meta name="referrer" content="origin" />
@@ -268,11 +268,23 @@ await app.listen();</code></pre>
 <div class="sect2">
 <h3 id="_3_the_registration_dance">3. The Registration Dance</h3>
 <div class="paragraph">
-<p>When <code>app.listen()</code> runs:
-1. A unique <strong>consumer ID</strong> is created
-2. The instance <strong>registers with the Service Worker</strong> at <code>/__workerify/register</code>
-3. Routes are <strong>broadcast</strong> via BroadcastChannel
-4. The Service Worker <strong>acknowledges</strong> the registration</p>
+<p>When <code>app.listen()</code> runs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A unique <strong>consumer ID</strong> is created</p>
+</li>
+<li>
+<p>The instance <strong>registers with the Service Worker</strong> at <code>/__workerify/register</code></p>
+</li>
+<li>
+<p>Routes are <strong>broadcast</strong> via BroadcastChannel</p>
+</li>
+<li>
+<p>The Service Worker <strong>acknowledges</strong> the registration</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -511,7 +523,7 @@ htmx.trigger('#app', 'workerify-ready');</code></pre>
         // hljs.initHighlightingOnLoad();
       </script>
 
-    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759130964996"></script>
+    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137233668"></script>
 
 
     <!-- Fathom - beautiful, simple website analytics -->
