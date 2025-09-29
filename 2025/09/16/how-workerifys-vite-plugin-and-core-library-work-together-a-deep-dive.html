@@ -27,7 +27,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137647444" />
+    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137797112" />
 
     <link rel="canonical" href="http://anthonnyquerouil.me/2025/09/16/how-workerifys-vite-plugin-and-core-library-work-together-a-deep-dive.html" />
     <meta name="referrer" content="origin" />
@@ -194,8 +194,8 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Workerify is made of two main packages:
-- <strong>@workerify/lib</strong> — the core routing library, handling request matching and processing
-- <strong>@workerify/vite-plugin</strong> — a Vite plugin that manages Service Worker registration and build-time optimizations</p>
+- <strong>@workerify/lib</strong>: the core routing library, handling request matching and processing
+- <strong>@workerify/vite-plugin</strong>: a Vite plugin that manages Service Worker registration and build-time optimizations</p>
 </div>
 <div class="paragraph">
 <p>These two communicate through the <strong>BroadcastChannel API</strong>, letting your app define routes while the Service Worker intercepts and handles HTTP traffic.</p>
@@ -235,7 +235,7 @@ export default defineConfig({
 <p><strong>Provides a virtual module</strong> (<code>virtual:workerify-register</code>) for easy registration</p>
 </li>
 <li>
-<p><strong>Handles both dev and build modes</strong> — served from memory in dev, emitted as a build asset in prod</p>
+<p><strong>Handles both dev and build modes</strong>, served from memory in dev, emitted as a build asset in prod</p>
 </li>
 </ul>
 </div>
@@ -435,13 +435,13 @@ await app.listen();</code></pre>
 <p>A <strong>familiar API</strong> (Fastify-like)</p>
 </li>
 <li>
-<p><strong>Zero network latency</strong> — requests handled in-browser</p>
+<p><strong>Zero network latency</strong>, requests handled in-browser</p>
 </li>
 <li>
 <p><strong>SPA-friendly design</strong>, perfect with <a href="https://htmx.org">HTMX</a></p>
 </li>
 <li>
-<p><strong>Smooth dev experience</strong> — hot reload and route updates without reinstalling the SW</p>
+<p><strong>Smooth dev experience</strong>, hot reload and route updates without reinstalling the SW</p>
 </li>
 <li>
 <p><strong>Full TypeScript support</strong></p>
@@ -543,7 +543,7 @@ htmx.trigger('#app', 'workerify-ready');</code></pre>
 <p>This design opens the door to offline-first apps, zero-latency SPAs, and new client-side architectures. Workerify is still evolving, but it’s a useful starting point for experimenting with Service Workers in new ways — and it can even serve as a stepping stone toward simpler application models, especially those built with <a href="https://htmx.org">HTMX</a>.</p>
 </div>
 <div class="paragraph">
-<p>👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me — I’d love to hear how you use <a href="https://github.com/anthonny/workerify">Workerify</a>!
+<p>👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me, I’d love to hear how you use <a href="https://github.com/anthonny/workerify">Workerify</a>!
 <a href="https://discord.gg/9wW8KFXEnx">A fresh Discord is available</a> if you’d like to join and share with me 😁</p>
 </div>
 </div>
@@ -596,7 +596,7 @@ htmx.trigger('#app', 'workerify-ready');</code></pre>
         // hljs.initHighlightingOnLoad();
       </script>
 
-    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137647444"></script>
+    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137797112"></script>
 
 
     <!-- Fathom - beautiful, simple website analytics -->
