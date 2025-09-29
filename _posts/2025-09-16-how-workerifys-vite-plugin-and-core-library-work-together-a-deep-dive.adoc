@@ -163,6 +163,7 @@ This will generate a ready-to-use setup with Vite, HTMX, and Workerify so you ca
 ## Conclusion
 
 https://github.com/anthonny/workerify[Workerify] makes Service Worker routing simple and powerful by:
+
 - Separating route definition (lib) from SW management (plugin)
 - Using BroadcastChannel for fast communication
 - Handling multi-tab isolation automatically
