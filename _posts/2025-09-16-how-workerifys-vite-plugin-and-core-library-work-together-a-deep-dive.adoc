@@ -97,14 +97,17 @@ Service Workers are shared across tabs. Workerify ensures isolation by giving ea
 Workerify relies on a simple, well-defined protocol over BroadcastChannel:
 
 - **Route registration**: 
-```
+
+```json
 { 
   type: 'workerify:routes:update', 
   consumerId, routes
 }
 ```
+
 - **Request handling**: 
-```
+
+```json
 { 
   type: 'workerify:handle', 
   id, 
@@ -112,8 +115,10 @@ Workerify relies on a simple, well-defined protocol over BroadcastChannel:
   request 
 }
 ```
+
 - **Response delivery**: 
-```
+
+```json
 { 
   type: 'workerify:response',
   id, 
@@ -122,8 +127,10 @@ Workerify relies on a simple, well-defined protocol over BroadcastChannel:
   body 
 }
 ```
+
 - **Debugging**: 
-```
+
+```json
 { type: 'workerify:routes:list' },
 { type: 'workerify:clients:list' }
 ```
