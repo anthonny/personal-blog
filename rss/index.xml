@@ -1,4 +1,256 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Anthonny Quérouil]]></title><description><![CDATA[Passionate developer :)]]></description><link>http://anthonnyquerouil.me</link><image><url>https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg</url><title>Anthonny Quérouil</title><link>http://anthonnyquerouil.me</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 25 Sep 2025 07:45:27 GMT</lastBuildDate><atom:link href="http://anthonnyquerouil.me/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How to use accounts-ui with Elm and Meteor in 10 minutes]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Anthonny Quérouil]]></title><description><![CDATA[Passionate developer :)]]></description><link>http://anthonnyquerouil.me</link><image><url>https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg</url><title>Anthonny Quérouil</title><link>http://anthonnyquerouil.me</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 29 Sep 2025 06:25:17 GMT</lastBuildDate><atom:link href="http://anthonnyquerouil.me/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How Workerify's Vite Plugin and Core Library Work Together: A Deep Dive]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Building modern web applications with Service Workers can be complex. Workerify’s goal isn’t to simplify every aspect of Service Worker development, but rather to make it straightforward to create API-like endpoints directly in the browser. By providing a Fastify-like router that runs entirely inside a Service Worker, Workerify makes this specific use case both easy and powerful. In this post, we’ll explore Workerify’s architecture and how its Vite plugin and core library work hand in hand.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_architecture_overview">Architecture Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Workerify is made of two main packages:
+- <strong>@workerify/lib</strong> — the core routing library, handling request matching and processing
+- <strong>@workerify/vite-plugin</strong> — a Vite plugin that manages Service Worker registration and build-time optimizations</p>
+</div>
+<div class="paragraph">
+<p>These two communicate through the <strong>BroadcastChannel API</strong>, letting your app define routes while the Service Worker intercepts and handles HTTP traffic.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_journey_of_a_request">The Journey of a Request</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let’s follow how a request flows through the system.</p>
+</div>
+<div class="sect2">
+<h3 id="_1_initial_setup_the_vite_plugin">1. Initial Setup: The Vite Plugin</h3>
+<div class="paragraph">
+<p>When you add the Workerify plugin to your Vite config:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">// vite.config.ts
+import workerify from '@workerify/vite-plugin';
+
+export default defineConfig({
+  plugins: [workerify()]
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The plugin takes care of several things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Generates a Service Worker file</strong> at <code>/workerify-sw.js</code></p>
+</li>
+<li>
+<p><strong>Provides a virtual module</strong> (<code>virtual:workerify-register</code>) for easy registration</p>
+</li>
+<li>
+<p><strong>Handles both dev and build modes</strong> — served from memory in dev, emitted as a build asset in prod</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_application_initialization">2. Application Initialization</h3>
+<div class="paragraph">
+<p>In your app code, you register the Service Worker and define routes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { registerWorkerifySW } from 'virtual:workerify-register';
+import Workerify from '@workerify/lib';
+
+await registerWorkerifySW();
+
+const app = new Workerify({ logger: true });
+
+app.get('/todos', async () =&gt; JSON.stringify(todos));
+
+app.post('/todos', async (request, reply) =&gt; {
+  todos.push(request.body?.todo);
+  reply.headers = { 'HX-Trigger': 'todos:refresh' };
+});
+
+await app.listen();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_the_registration_dance">3. The Registration Dance</h3>
+<div class="paragraph">
+<p>When <code>app.listen()</code> runs:
+1. A unique <strong>consumer ID</strong> is created
+2. The instance <strong>registers with the Service Worker</strong> at <code>/__workerify/register</code>
+3. Routes are <strong>broadcast</strong> via BroadcastChannel
+4. The Service Worker <strong>acknowledges</strong> the registration</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_the_service_worker_traffic_controller">4. The Service Worker: Traffic Controller</h3>
+<div class="paragraph">
+<p>The Service Worker, generated by the plugin, maps clients to consumers and routes. When a <code>fetch</code> event occurs, it looks for a matching route and, if found, hands off processing to the right consumer through the channel.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_request_pipeline">5. Request Pipeline</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Interception</strong> — Service Worker catches the request</p>
+</li>
+<li>
+<p><strong>Route Matching</strong> — Finds the right handler</p>
+</li>
+<li>
+<p><strong>Broadcast</strong> — Sends request details to the consumer</p>
+</li>
+<li>
+<p><strong>Processing</strong> — Consumer runs the handler</p>
+</li>
+<li>
+<p><strong>Response</strong> — Returned via BroadcastChannel</p>
+</li>
+<li>
+<p><strong>Delivery</strong> — Service Worker replies to the browser</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multi_tab_support">Multi-Tab Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Service Workers are shared across tabs. Workerify ensures isolation by giving each tab its own consumer ID and routes. Closing a tab automatically cleans up its routes, avoiding conflicts between tabs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_communication_protocol">The Communication Protocol</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Workerify relies on a simple, well-defined protocol over BroadcastChannel:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Route registration</strong>: <code>{ type: 'workerify:routes:update', consumerId, routes }</code></p>
+</li>
+<li>
+<p><strong>Request handling</strong>: <code>{ type: 'workerify:handle', id, consumerId, request }</code></p>
+</li>
+<li>
+<p><strong>Response delivery</strong>: <code>{ type: 'workerify:response', id, status, headers, body }</code></p>
+</li>
+<li>
+<p><strong>Debugging</strong>: <code>{ type: 'workerify:routes:list' }</code>, <code>{ type: 'workerify:clients:list' }</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_time_optimizations">Build-Time Optimizations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Vite plugin improves both dev and production workflows:
+1. <strong>Pre-compiled templates</strong> for the Service Worker
+2. <strong>Virtual module generation</strong> for registration code
+3. <strong>Automatic base path handling</strong>
+4. <strong>Memory serving in dev</strong> for faster updates</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_this_architecture">Why This Architecture?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Unlike traditional Service Worker setups, Workerify removes boilerplate and gives developers:
+- A <strong>familiar API</strong> (Fastify-like)
+- <strong>Zero network latency</strong> — requests handled in-browser
+- <strong>SPA-friendly design</strong>, perfect with <a href="https://htmx.org">HTMX</a>
+- <strong>Smooth dev experience</strong> — hot reload and route updates without reinstalling the SW
+- <strong>Full TypeScript support</strong></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_performance_considerations">Performance Considerations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Minimal overhead</strong> with BroadcastChannel</p>
+</li>
+<li>
+<p><strong>Lazy route matching</strong> only when needed</p>
+</li>
+<li>
+<p><strong>Automatic cleanup</strong> of closed tabs</p>
+</li>
+<li>
+<p><strong>Memory efficiency</strong> by storing routes once in the Service Worker</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_practical_example_a_todo_app">Practical Example: A Todo App</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ts" data-lang="ts">import { registerWorkerifySW } from 'virtual:workerify-register';
+import Workerify from '@workerify/lib';
+import htmx from 'htmx.org';
+
+await registerWorkerifySW();
+
+const app = new Workerify({ logger: true });
+const todos: string[] = [];
+
+app.get('/todos', async () =&gt;
+  `&lt;ul&gt;${todos.map(t =&gt; `&lt;li&gt;${t}&lt;/li&gt;`).join('')}&lt;/ul&gt;`
+);
+
+app.post('/todos', async (request, reply) =&gt; {
+  todos.push(request.body?.todo);
+  reply.headers = { 'HX-Trigger': 'todos:refresh' };
+  return { success: true };
+});
+
+await app.listen();
+htmx.trigger('#app', 'workerify-ready');</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Workerify makes Service Worker routing simple and powerful by:
+- Separating route definition (lib) from SW management (plugin)
+- Using BroadcastChannel for fast communication
+- Handling multi-tab isolation automatically
+- Offering a familiar, developer-friendly API</p>
+</div>
+<div class="paragraph">
+<p>This design opens the door to offline-first apps, zero-latency SPAs, and new client-side architectures. Workerify is still evolving, but it’s a useful starting point for experimenting with Service Workers in new ways — and it can even serve as a stepping stone toward simpler application models, especially those built with <a href="https://htmx.org">HTMX</a>.</p>
+</div>
+<div class="paragraph">
+<p>👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me — I’d love to hear how you use Workerify!
+<a href="https://discord.gg/9wW8KFXEnx">A fresh Discord is available</a> if you’d like to join and share with me 😁</p>
+</div>
+</div>
+</div>]]></description><link>http://anthonnyquerouil.me/2025/09/16/How-Workerifys-Vite-Plugin-and-Core-Library-Work-Together-A-Deep-Dive.html</link><guid isPermaLink="true">http://anthonnyquerouil.me/2025/09/16/How-Workerifys-Vite-Plugin-and-Core-Library-Work-Together-A-Deep-Dive.html</guid><category><![CDATA[Workerify]]></category><category><![CDATA[Htmx]]></category><category><![CDATA[Service worker]]></category><category><![CDATA[SPA]]></category><dc:creator><![CDATA[Anthonny Quérouil]]></dc:creator><pubDate>Tue, 16 Sep 2025 00:00:00 GMT</pubDate></item><item><title><![CDATA[How to use accounts-ui with Elm and Meteor in 10 minutes]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>With <a href="https://www.meteor.com/">Meteor</a> you can quickly add an account management system using the packages <a href="https://docs.meteor.com/packages/accounts-ui.html">accounts-ui</a> and <a href="https://docs.meteor.com/api/passwords.html">accounts-password</a>.
