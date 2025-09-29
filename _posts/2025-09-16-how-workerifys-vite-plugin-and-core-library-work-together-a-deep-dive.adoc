@@ -96,10 +96,37 @@ Service Workers are shared across tabs. Workerify ensures isolation by giving ea
 
 Workerify relies on a simple, well-defined protocol over BroadcastChannel:
 
-- **Route registration**: `{ type: 'workerify:routes:update', consumerId, routes }`
-- **Request handling**: `{ type: 'workerify:handle', id, consumerId, request }`
-- **Response delivery**: `{ type: 'workerify:response', id, status, headers, body }`
-- **Debugging**: `{ type: 'workerify:routes:list' }`, `{ type: 'workerify:clients:list' }`
+- **Route registration**: 
+```
+{ 
+  type: 'workerify:routes:update', 
+  consumerId, routes
+}
+```
+- **Request handling**: 
+```
+{ 
+  type: 'workerify:handle', 
+  id, 
+  consumerId, 
+  request 
+}
+```
+- **Response delivery**: 
+```
+{ 
+  type: 'workerify:response',
+  id, 
+  status, 
+  headers, 
+  body 
+}
+```
+- **Debugging**: 
+```
+{ type: 'workerify:routes:list' },
+{ type: 'workerify:clients:list' }
+```
 
 ## Build-Time Optimizations
 
