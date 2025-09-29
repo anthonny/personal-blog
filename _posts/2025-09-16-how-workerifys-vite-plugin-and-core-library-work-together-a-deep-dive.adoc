@@ -16,8 +16,8 @@ Building modern web applications with Service Workers can be complex. https://gi
 ## Architecture Overview
 
 Workerify is made of two main packages:
-- **@workerify/lib** — the core routing library, handling request matching and processing
-- **@workerify/vite-plugin** — a Vite plugin that manages Service Worker registration and build-time optimizations
+- **@workerify/lib**: the core routing library, handling request matching and processing
+- **@workerify/vite-plugin**: a Vite plugin that manages Service Worker registration and build-time optimizations
 
 These two communicate through the **BroadcastChannel API**, letting your app define routes while the Service Worker intercepts and handles HTTP traffic.
 
@@ -42,7 +42,7 @@ The plugin takes care of several things:
 
 - **Generates a Service Worker file** at `/workerify-sw.js`
 - **Provides a virtual module** (`virtual:workerify-register`) for easy registration
-- **Handles both dev and build modes** — served from memory in dev, emitted as a build asset in prod
+- **Handles both dev and build modes**, served from memory in dev, emitted as a build asset in prod
 
 ### 2. Application Initialization
 
@@ -149,9 +149,9 @@ The Vite plugin improves both dev and production workflows:
 Unlike traditional Service Worker setups, Workerify removes boilerplate and gives developers:
 
 - A **familiar API** (Fastify-like)
-- **Zero network latency** — requests handled in-browser
+- **Zero network latency**, requests handled in-browser
 - **SPA-friendly design**, perfect with https://htmx.org[HTMX]
-- **Smooth dev experience** — hot reload and route updates without reinstalling the SW
+- **Smooth dev experience**, hot reload and route updates without reinstalling the SW
 - **Full TypeScript support**
 
 ## Performance Considerations
@@ -208,5 +208,5 @@ https://github.com/anthonny/workerify[Workerify] makes Service Worker routing si
 
 This design opens the door to offline-first apps, zero-latency SPAs, and new client-side architectures. Workerify is still evolving, but it’s a useful starting point for experimenting with Service Workers in new ways — and it can even serve as a stepping stone toward simpler application models, especially those built with https://htmx.org[HTMX].
 
-👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me — I’d love to hear how you use https://github.com/anthonny/workerify[Workerify]!
+👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me, I’d love to hear how you use https://github.com/anthonny/workerify[Workerify]!
 https://discord.gg/9wW8KFXEnx[A fresh Discord is available] if you’d like to join and share with me 😁
