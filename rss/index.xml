@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Anthonny Quérouil]]></title><description><![CDATA[Passionate developer :)]]></description><link>http://anthonnyquerouil.me</link><image><url>https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg</url><title>Anthonny Quérouil</title><link>http://anthonnyquerouil.me</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 29 Sep 2025 09:17:06 GMT</lastBuildDate><atom:link href="http://anthonnyquerouil.me/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How Workerify's Vite Plugin and Core Library Work Together: A Deep Dive]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Anthonny Quérouil]]></title><description><![CDATA[Passionate developer :)]]></description><link>http://anthonnyquerouil.me</link><image><url>https://cloud.githubusercontent.com/assets/2006548/12876743/de1c3488-ce06-11e5-82aa-63de890f71be.jpg</url><title>Anthonny Quérouil</title><link>http://anthonnyquerouil.me</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 29 Sep 2025 09:19:17 GMT</lastBuildDate><atom:link href="http://anthonnyquerouil.me/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How Workerify's Vite Plugin and Core Library Work Together: A Deep Dive]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Building modern web applications with Service Workers can be complex. <a href="https://github.com/anthonny/workerify">Workerify</a>’s goal isn’t to simplify every aspect of Service Worker development, but rather to make it straightforward to create API-like endpoints directly in the browser. By providing a Fastify-like router that runs entirely inside a Service Worker, Workerify makes this specific use case both easy and powerful. In this post, we’ll explore <a href="https://github.com/anthonny/workerify">Workerify</a>’s architecture and how its Vite plugin and core library work hand in hand.</p>
@@ -153,18 +153,65 @@ await app.listen();</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Route registration</strong>: <code>{ type: 'workerify:routes:update', consumerId, routes }</code></p>
-</li>
-<li>
-<p><strong>Request handling</strong>: <code>{ type: 'workerify:handle', id, consumerId, request }</code></p>
-</li>
-<li>
-<p><strong>Response delivery</strong>: <code>{ type: 'workerify:response', id, status, headers, body }</code></p>
-</li>
-<li>
-<p><strong>Debugging</strong>: <code>{ type: 'workerify:routes:list' }</code>, <code>{ type: 'workerify:clients:list' }</code></p>
+<p><strong>Route registration</strong>:</p>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  type: 'workerify:routes:update',
+  consumerId, routes
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Request handling</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  type: 'workerify:handle',
+  id,
+  consumerId,
+  request
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Response delivery</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  type: 'workerify:response',
+  id,
+  status,
+  headers,
+  body
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Debugging</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{ type: 'workerify:routes:list' },
+{ type: 'workerify:clients:list' }</code></pre>
+</div>
 </div>
 </div>
 </div>

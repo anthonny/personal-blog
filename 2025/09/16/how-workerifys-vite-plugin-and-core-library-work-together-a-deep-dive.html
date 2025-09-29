@@ -27,7 +27,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137426609" />
+    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137557919" />
 
     <link rel="canonical" href="http://anthonnyquerouil.me/2025/09/16/how-workerifys-vite-plugin-and-core-library-work-together-a-deep-dive.html" />
     <meta name="referrer" content="origin" />
@@ -337,18 +337,65 @@ await app.listen();</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Route registration</strong>: <code>{ type: 'workerify:routes:update', consumerId, routes }</code></p>
-</li>
-<li>
-<p><strong>Request handling</strong>: <code>{ type: 'workerify:handle', id, consumerId, request }</code></p>
-</li>
-<li>
-<p><strong>Response delivery</strong>: <code>{ type: 'workerify:response', id, status, headers, body }</code></p>
-</li>
-<li>
-<p><strong>Debugging</strong>: <code>{ type: 'workerify:routes:list' }</code>, <code>{ type: 'workerify:clients:list' }</code></p>
+<p><strong>Route registration</strong>:</p>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  type: 'workerify:routes:update',
+  consumerId, routes
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Request handling</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  type: 'workerify:handle',
+  id,
+  consumerId,
+  request
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Response delivery</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{
+  type: 'workerify:response',
+  id,
+  status,
+  headers,
+  body
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Debugging</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{ type: 'workerify:routes:list' },
+{ type: 'workerify:clients:list' }</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -549,7 +596,7 @@ htmx.trigger('#app', 'workerify-ready');</code></pre>
         // hljs.initHighlightingOnLoad();
       </script>
 
-    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137426609"></script>
+    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137557919"></script>
 
 
     <!-- Fathom - beautiful, simple website analytics -->
