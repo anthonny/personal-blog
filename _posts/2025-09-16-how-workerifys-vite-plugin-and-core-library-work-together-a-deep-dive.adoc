@@ -16,6 +16,7 @@ Building modern web applications with Service Workers can be complex. https://gi
 ## Architecture Overview
 
 Workerify is made of two main packages:
+
 - **@workerify/lib**: the core routing library, handling request matching and processing
 - **@workerify/vite-plugin**: a Vite plugin that manages Service Worker registration and build-time optimizations
 
