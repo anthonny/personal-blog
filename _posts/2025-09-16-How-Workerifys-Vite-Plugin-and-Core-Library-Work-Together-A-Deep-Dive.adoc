@@ -9,7 +9,7 @@
 :published_at: 2025-09-16
 :hp-tags: Workerify, Htmx, Service worker, SPA
 
-Building modern web applications with Service Workers can be complex. Workerify’s goal isn’t to simplify every aspect of Service Worker development, but rather to make it straightforward to create API-like endpoints directly in the browser. By providing a Fastify-like router that runs entirely inside a Service Worker, Workerify makes this specific use case both easy and powerful. In this post, we’ll explore Workerify’s architecture and how its Vite plugin and core library work hand in hand.
+Building modern web applications with Service Workers can be complex. https://github.com/anthonny/workerify[Workerify]’s goal isn’t to simplify every aspect of Service Worker development, but rather to make it straightforward to create API-like endpoints directly in the browser. By providing a Fastify-like router that runs entirely inside a Service Worker, Workerify makes this specific use case both easy and powerful. In this post, we’ll explore https://github.com/anthonny/workerify[Workerify]’s architecture and how its Vite plugin and core library work hand in hand.
 
 ## Architecture Overview
 
@@ -150,7 +150,7 @@ htmx.trigger('#app', 'workerify-ready');
 
 ## Conclusion
 
-Workerify makes Service Worker routing simple and powerful by:
+https://github.com/anthonny/workerify[Workerify] makes Service Worker routing simple and powerful by:
 - Separating route definition (lib) from SW management (plugin)
 - Using BroadcastChannel for fast communication
 - Handling multi-tab isolation automatically
@@ -158,5 +158,5 @@ Workerify makes Service Worker routing simple and powerful by:
 
 This design opens the door to offline-first apps, zero-latency SPAs, and new client-side architectures. Workerify is still evolving, but it’s a useful starting point for experimenting with Service Workers in new ways — and it can even serve as a stepping stone toward simpler application models, especially those built with https://htmx.org[HTMX].
 
-👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me — I’d love to hear how you use Workerify!
+👉 Try it out, experiment with your own projects, and feel free to share your feedback and experiences with me — I’d love to hear how you use https://github.com/anthonny/workerify[Workerify]!
 https://discord.gg/9wW8KFXEnx[A fresh Discord is available] if you’d like to join and share with me 😁
