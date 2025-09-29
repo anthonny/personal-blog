@@ -27,7 +27,7 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759137797112" />
+    <link rel="stylesheet" type="text/css" href="//anthonnyquerouil.me/themes/uno/assets/css/uno.css?v=1759146510066" />
 
     <link rel="canonical" href="http://anthonnyquerouil.me/2025/09/16/how-workerifys-vite-plugin-and-core-library-work-together-a-deep-dive.html" />
     <meta name="referrer" content="origin" />
@@ -193,9 +193,17 @@
 <h2 id="_architecture_overview">Architecture Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Workerify is made of two main packages:
-- <strong>@workerify/lib</strong>: the core routing library, handling request matching and processing
-- <strong>@workerify/vite-plugin</strong>: a Vite plugin that manages Service Worker registration and build-time optimizations</p>
+<p>Workerify is made of two main packages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@workerify/lib</strong>: the core routing library, handling request matching and processing</p>
+</li>
+<li>
+<p><strong>@workerify/vite-plugin</strong>: a Vite plugin that manages Service Worker registration and build-time optimizations</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>These two communicate through the <strong>BroadcastChannel API</strong>, letting your app define routes while the Service Worker intercepts and handles HTTP traffic.</p>
@@ -596,7 +604,7 @@ htmx.trigger('#app', 'workerify-ready');</code></pre>
         // hljs.initHighlightingOnLoad();
       </script>
 
-    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759137797112"></script>
+    <script type="text/javascript" src="//anthonnyquerouil.me/themes/uno/assets/js/main.js?v=1759146510066"></script>
 
 
     <!-- Fathom - beautiful, simple website analytics -->
